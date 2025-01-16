@@ -1,0 +1,7 @@
+D:\Booking\BookingTimeBack\BookingTime\obj\Debug\net5.0\BookingTime.csproj.AssemblyReference.cache
+D:\Booking\BookingTimeBack\BookingTime\obj\Debug\net5.0\BookingTime.GeneratedMSBuildEditorConfig.editorconfig
+D:\Booking\BookingTimeBack\BookingTime\obj\Debug\net5.0\BookingTime.AssemblyInfoInputs.cache
+D:\Booking\BookingTimeBack\BookingTime\obj\Debug\net5.0\BookingTime.AssemblyInfo.cs
+D:\Booking\BookingTimeBack\BookingTime\obj\Debug\net5.0\BookingTime.csproj.CoreCompileInputs.cache
+D:\Booking\BookingTimeBack\BookingTime\obj\Debug\net5.0\BookingTime.MvcApplicationPartsAssemblyInfo.cs
+D:\Booking\BookingTimeBack\BookingTime\obj\Debug\net5.0\BookingTime.MvcApplicationPartsAssemblyInfo.cache

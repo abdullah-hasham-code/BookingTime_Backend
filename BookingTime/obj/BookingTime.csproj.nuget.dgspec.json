@@ -1,28 +1,30 @@
 {
   "format": 1,
   "restore": {
-    "F:\\BookingTime\\BookingTime_Backend\\BookingTime_Backend\\BookingTime\\BookingTime.csproj": {}
+    "D:\\Booking\\BookingTimeBack\\BookingTime\\BookingTime.csproj": {}
   },
   "projects": {
-    "F:\\BookingTime\\BookingTime_Backend\\BookingTime_Backend\\BookingTime\\BookingTime.csproj": {
+    "D:\\Booking\\BookingTimeBack\\BookingTime\\BookingTime.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\BookingTime\\BookingTime_Backend\\BookingTime_Backend\\BookingTime\\BookingTime.csproj",
+        "projectUniqueName": "D:\\Booking\\BookingTimeBack\\BookingTime\\BookingTime.csproj",
         "projectName": "BookingTime",
-        "projectPath": "F:\\BookingTime\\BookingTime_Backend\\BookingTime_Backend\\BookingTime\\BookingTime.csproj",
-        "packagesPath": "C:\\Users\\abbas\\.nuget\\packages\\",
-        "outputPath": "F:\\BookingTime\\BookingTime_Backend\\BookingTime_Backend\\BookingTime\\obj\\",
+        "projectPath": "D:\\Booking\\BookingTimeBack\\BookingTime\\BookingTime.csproj",
+        "packagesPath": "C:\\Users\\abdullah.hasham\\.nuget\\packages\\",
+        "outputPath": "D:\\Booking\\BookingTimeBack\\BookingTime\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
-          "C:\\Users\\abbas\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\abdullah.hasham\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "net8.0"
+          "net7.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
@@ -30,8 +32,8 @@
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net8.0": {
-            "targetAlias": "net8.0",
+          "net7.0": {
+            "targetAlias": "net7.0",
             "projectReferences": {}
           }
         },
@@ -39,17 +41,32 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
         }
       },
       "frameworks": {
-        "net8.0": {
-          "targetAlias": "net8.0",
+        "net7.0": {
+          "targetAlias": "net7.0",
           "dependencies": {
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.0, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[7.0.1, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.4.0, )"
@@ -74,7 +91,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.303/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.402\\RuntimeIdentifierGraph.json"
         }
       }
     }
