@@ -200,7 +200,7 @@ namespace BookingTime.Controllers
             {
                 new Claim(JwtRegisteredClaimNames.Sub, user.Email),  // Subject: the user's email
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),  // JWT ID (unique)
-                new Claim(ClaimTypes.Name, user.FullName),  // User's full name (example)
+                new Claim(ClaimTypes.Name, user.Email),  // User's full name (example)
                 new Claim("IsVerified", user.IsVerified.ToString())  // Additional claim indicating if the account is verified
              };
 
