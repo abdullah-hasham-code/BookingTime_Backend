@@ -8,6 +8,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Security.Claims;
 using System.Text;
 using Microsoft.Extensions.Configuration;
+using System.Text.Json;
 
 namespace BookingTime.Controllers
 {
@@ -25,5 +26,20 @@ namespace BookingTime.Controllers
             var listOfProperty = bTMContext.PropertyDetails.ToList();
             return listOfProperty;
         }
+
+        [HttpPost("/api/AddListingProperty")]
+        public IActionResult AddListingProperty([FromBody] JsonElement request)
+        {
+            if (!request.TryGetProperty("data", out JsonElement data) || data.ValueKind != JsonValueKind.Object)
+                return BadRequest("Invalid request data.");
+            var propertyDetail = System.Text.Json.JsonSerializer.Deserialize<PropertyDetail>(data.GetRawText());
+            if (propertyDetail == null)
+                return BadRequest("Failed to parse property details.");
+            BookingtimeContext bTMContext = new BookingtimeContext(_configuration);
+            bTMContext.PropertyDetails.Add(propertyDetail);
+            bTMContext.SaveChanges();
+            return Ok(new { code = 200, msg = "Property added successfully!" });
+        }
+
     }
 }
