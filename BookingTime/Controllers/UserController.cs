@@ -7,6 +7,7 @@ using System.IdentityModel.Tokens.Jwt;
 using Microsoft.IdentityModel.Tokens;
 using System.Security.Claims;
 using System.Text;
+using Microsoft.AspNetCore.Cors;
 
 namespace BookingTime.Controllers
 {
@@ -24,6 +25,7 @@ namespace BookingTime.Controllers
         }
         [HttpPost]
         [Route("/api/login")]
+        [EnableCors("AllowAngularApp")]
         public object Login([FromBody] LoginRequest form)
         {
             try

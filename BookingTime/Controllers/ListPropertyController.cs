@@ -9,6 +9,7 @@ using System.Security.Claims;
 using System.Text;
 using Microsoft.Extensions.Configuration;
 using System.Text.Json;
+using Microsoft.AspNetCore.Cors;
 
 namespace BookingTime.Controllers
 {
@@ -20,6 +21,7 @@ namespace BookingTime.Controllers
             _configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
         }
         [HttpGet("/api/GetListOFProperty")]
+        [EnableCors("AllowAngularApp")]
         public object GetListOFProperty()
         {
             BookingtimeContext bTMContext = new BookingtimeContext(_configuration);
@@ -28,6 +30,7 @@ namespace BookingTime.Controllers
         }
 
         [HttpPost("/api/AddListingProperty")]
+        [EnableCors("AllowAngularApp")]
         public IActionResult AddListingProperty([FromBody] JsonElement request)
         {
             if (!request.TryGetProperty("data", out JsonElement data) || data.ValueKind != JsonValueKind.Object)
