@@ -8,6 +8,9 @@ using Microsoft.IdentityModel.Tokens;
 using System.Security.Claims;
 using System.Text;
 using Microsoft.AspNetCore.Cors;
+using MailKit.Net.Smtp;
+using MailKit.Security;
+using MimeKit;
 
 namespace BookingTime.Controllers
 {
@@ -72,7 +75,7 @@ namespace BookingTime.Controllers
                     var emailChk = bTMContext.Users.SingleOrDefault(u => u.Email == form.Email);
                     if (emailChk!=null)
                     {
-                        return JsonConvert.SerializeObject(new { code = 200, msg = "User already Exist with this email!" });
+                        return JsonConvert.SerializeObject(new { code = 409, msg = "User already Exist with this email!" });
                     }
                     User user = new User();
                     user.Email = form.Email;
@@ -139,41 +142,43 @@ namespace BookingTime.Controllers
             }
         }
 
-        public object SendVerificationEmail(string email, string token) 
+        public bool SendVerificationEmail(string email, string token)
         {
-            try 
+            try
             {
-
                 var smtpHost = _configuration["Smtp:Host"];
                 var smtpPort = int.Parse(_configuration["Smtp:Port"]);
                 var smtpUsername = _configuration["Smtp:Username"];
                 var smtpPassword = _configuration["Smtp:Password"];
-                var enableSsl = bool.Parse(_configuration["Smtp:EnableSsl"]);
                 var fromEmail = _configuration["Smtp:FromEmail"];
                 var baseUrl = _configuration["TokenBaseUrl"];
+
                 var verificationUrl = $"{baseUrl}verify/{token}";
                 var subject = "Email Verification";
                 var body = $"Please click the following link to verify your email: <a href='{verificationUrl}'>Verify Email</a>";
-                var client = new SmtpClient(smtpHost, smtpPort)
+
+                var message = new MimeMessage();
+                message.From.Add(new MailboxAddress("Cloud Innovator", fromEmail));
+                message.To.Add(new MailboxAddress("", email));
+                message.Subject = subject;
+                message.Body = new TextPart("html") { Text = body };
+
+                using (var client = new MailKit.Net.Smtp.SmtpClient())
                 {
-                    Credentials = new NetworkCredential(smtpUsername, smtpPassword),
-                    EnableSsl = true
-                }; 
-                var mailMessage = new MailMessage
-                {
-                    From = new MailAddress(fromEmail),
-                    Subject = subject,
-                    Body = body,
-                    IsBodyHtml = true
-                }; 
-                mailMessage.To.Add(email);
-                client.Send(mailMessage); 
-                System.Console.WriteLine("Sent");
+                    // Connect using SSL (465) or STARTTLS (587)
+                    client.Connect(smtpHost, smtpPort, SecureSocketOptions.Auto);
+                    client.Authenticate(smtpUsername, smtpPassword);
+                    client.Send(message);
+                    client.Disconnect(true);
+                }
+
+                Console.WriteLine("Email sent successfully!");
                 return true;
             }
-            catch(Exception ex) 
+            catch (Exception ex)
             {
-                return null;
+                Console.WriteLine($"SMTP Error: {ex.Message}");
+                return false;
             }
         }
         [HttpGet("verify/{token}")]

@@ -7,7 +7,9 @@ builder.Services.AddControllers();
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAngularApp",
-        policy => policy.WithOrigins("http://45.59.163.15:4200")  // Allow your frontend
+        policy => policy.WithOrigins("http://localhost:4200")  // Allow your frontend
+        //policy => policy.WithOrigins("http://45.59.163.15:4200")  // Allow your frontend
+
                         .AllowAnyHeader()
                         .AllowAnyMethod()
                         .AllowCredentials());  // Allow credentials (if needed)
